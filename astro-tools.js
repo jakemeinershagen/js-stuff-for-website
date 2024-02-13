@@ -8,6 +8,8 @@ let focal_length_units;
 
 let max_effective_mag = null;
 
+let eyepieces = [];
+
 function output_to_element(elementId, value){
     document.getElementById(elementId).innerHTML = value;
 }
@@ -33,6 +35,13 @@ function get_aperture_mm(){
     output_to_element("aperture-output", aperture);
 }
 
+function get_focal_length_mm(){
+    focal_length = get_float_value("focal-length");
+    if(focal_length_units === "in"){
+        focal_length = Math.floor(focal_length * in_to_mm);
+    }
+}
+
 function get_max_effective_mag(){
     /*
     source: https://www.telescope.com/Telescope-Power-Magnification/p/99813.uts
@@ -43,12 +52,84 @@ function get_max_effective_mag(){
     output_to_element("max-effective-mag-output", max_effective_mag);
 }
 
-function main() {
+function telescope_calculate() {
     aperture_units = get_value("aperture-units");
     get_aperture_mm();
 
     focal_length_units = get_value("focal-length-units");
-    focal_length = get_float_value("focal-length");
+    get_focal_length_mm();
 
     get_max_effective_mag();
+}
+
+
+function Eyepiece(focal_length, apparent_fov, barlow){
+    this.focal_length = focal_length;
+    this.apparent_fov = apparent_fov;
+    this.barlow = barlow;
+    this.magnification = 0;
+    this.actual_fov = 0.0;
+    this.magnification_barlow = 0;
+    this.actual_fov_barlow = 0.0;
+}
+
+function refresh_eyepiece_table(){
+    let table = document.getElementById("eyepiece-table");
+    let eyepiece_rows = document.getElementsByClassName("eyepiece");
+    let num_rows = eyepiece_rows.length;
+    for(let i = 0; i < num_rows; i++){
+        table.removeChild(eyepiece_rows[0]);
+    }
+    
+    for(let i = 0; i < eyepieces.length; i++){
+        let eyepiece = eyepieces[i];
+
+        let new_row = document.createElement("tr");
+        new_row.classList.add("eyepiece");
+        new_row.id = "eyepiece-" + i;
+
+        let focal_length_data = document.createElement("td");
+        focal_length_data.innerText = eyepiece.focal_length;
+        new_row.appendChild(focal_length_data);
+
+        let magnification_data = document.createElement("td");
+        magnification_data.innerText = eyepiece.magnification;
+        new_row.appendChild(magnification_data);
+
+        let actual_fov_data = document.createElement("td");
+        actual_fov_data.innerText = eyepiece.actual_fov;
+        new_row.appendChild(actual_fov_data);
+
+        let magnification_barlow_data = document.createElement("td");
+        magnification_barlow_data.innerText = eyepiece.magnification_barlow;
+        new_row.appendChild(magnification_barlow_data);
+
+        let actual_fov_barlow_data = document.createElement("td");
+        actual_fov_barlow_data.innerText = eyepiece.actual_fov_barlow;
+        new_row.appendChild(actual_fov_barlow_data);
+
+        let apparent_fov_data = document.createElement("td");
+        apparent_fov_data.innerText = eyepiece.apparent_fov;
+        new_row.appendChild(apparent_fov_data);
+
+        let barlow_data = document.createElement("td");
+        barlow_data.innerText = eyepiece.barlow;
+        new_row.appendChild(barlow_data);
+
+        table.appendChild(new_row);
+    }
+
+}
+
+
+function add_eyepiece(){
+    let new_eyepiece = new Eyepiece(
+        get_int_value("eyepiece-focal-length"),
+        get_int_value("apparent-fov"),
+        get_int_value("barlow")
+    );
+
+    eyepieces.push(new_eyepiece);
+
+    refresh_eyepiece_table();
 }

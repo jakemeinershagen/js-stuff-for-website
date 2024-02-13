@@ -6,8 +6,9 @@
     <script src="astro-tools.js"></script>
 </head>
 <body>
+    <h3>Telescope Info:</h3>
     <p>*values in inches will be converted mm immediately, so if you have mm that will be more accurate.</p>
-    <form onsubmit="main();return false;">
+    <form onsubmit="telescope_calculate(); return false;">
 
         <label>Aperture: </label>
         <input id="aperture" type="number" step="0.01"/>
@@ -29,8 +30,39 @@
         <input type="submit" name="calculate" value="Calculate"/>
     </form>
 
+    <hr><br>
+
+    <form onsubmit="add_eyepiece(); return false;">
+        <label>Focal Length:</label>
+        <input id="eyepiece-focal-length" type="number"/>
+
+        <label>Apparent FOV:</label>
+        <input id="apparent-fov" type="number"/>
+
+        <label>Barlow:</label>
+        <input id="barlow" type="number"/>
+
+        <input type="submit" name="add eyepiece" value="Add Eyepiece"/>
+    </form>
+
+    <hr><br>
+
     <p>Aperture: <span id="aperture-output">----</span>mm</p>
 
+    <p>Focal Length: <span id="focal-length-output">----</span>mm</p>
+
     <p>Maximum Magnification: <span id="max-effective-mag-output">---</span>x</p>
+
+    <table id="eyepiece-table">
+        <tr>
+            <th>Focal Length</th>
+            <th>Magnification</th>
+            <th>Actual FOV</th>
+            <th>Magnification (Barlow)</th>
+            <th>Actual FOV (Barlow)</th>
+            <th>Apparent FOV</th>
+            <th>Barlow</th>
+        </tr>
+    </table>
 </body>
 </html>
