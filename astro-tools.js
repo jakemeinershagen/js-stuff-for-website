@@ -1,3 +1,5 @@
+const in_to_mm = 25.4
+
 let aperture;
 let aperture_units;
 
@@ -22,24 +24,28 @@ function get_float_value(elementId){
     return parseFloat(get_value(elementId));
 }
 
+function get_aperture_mm(){
+    aperture = get_float_value("aperture");
+    if (aperture_units === "in"){
+        aperture = Math.floor(aperture * in_to_mm);
+    }
+
+    output_to_element("aperture-output", aperture);
+}
+
 function get_max_effective_mag(){
     /*
     source: https://www.telescope.com/Telescope-Power-Magnification/p/99813.uts
     would like to find better source but this is good enough for now
     */
-    if (aperture_units === "mm"){
-        max_effective_mag = aperture * 2;
-    } 
-    else if (aperture_units == "in"){
-        max_effective_mag = aperture * 50;
-    }
+    max_effective_mag = aperture * 2;
 
     output_to_element("max-effective-mag-output", max_effective_mag);
 }
 
 function main() {
     aperture_units = get_value("aperture-units");
-    aperture = get_float_value("aperture");
+    get_aperture_mm();
 
     focal_length_units = get_value("focal-length-units");
     focal_length = get_float_value("focal-length");

@@ -6,27 +6,30 @@
     <script src="astro-tools.js"></script>
 </head>
 <body>
+    <p>*values in inches will be converted mm immediately, so if you have mm that will be more accurate.</p>
     <form onsubmit="main();return false;">
 
         <label>Aperture: </label>
         <input id="aperture" type="number" step="0.01"/>
         <select name="aperture-units" id="aperture-units">
-            <option value="in">in</option>
             <option value="mm">mm</option>
+            <option value="in">in</option>
         </select>
         <br>
 
         <label>Focal Length: </label>
         <input id="focal-length" type="number" step="0.01"/>
         <select name="focal-length-units" id="focal-length-units">
-            <option value="in">in</option>
             <option value="mm">mm</option>
+            <option value="in">in</option>
         </select>
         <br>
 
 
         <input type="submit" name="calculate" value="Calculate"/>
     </form>
+
+    <p>Aperture: <span id="aperture-output">----</span>mm</p>
 
     <p>Maximum Magnification: <span id="max-effective-mag-output">---</span>x</p>
 </body>

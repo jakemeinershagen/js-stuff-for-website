@@ -7,6 +7,7 @@ Tools for astronomy. Especially amateur astronomers. Will be posted on [my websi
 - Should I just convert to mm if I'm given inches and do all calculation in mm? would potentially make it easier.
 - Allow adding multiple eyepieces and calculate mag and fov for each.
 - Resolution limits for scope.
+- Allow entering focal length or focal ration (note that focal length should be prefered)
 
 ## Maybe List
 - Overlay fov on an object like Andromeda.
