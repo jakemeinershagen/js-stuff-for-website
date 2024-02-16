@@ -60,6 +60,9 @@ function telescope_calculate() {
     get_focal_length_mm();
 
     get_max_effective_mag();
+
+    eyepiece_calculate();
+    refresh_eyepiece_table();
 }
 
 
@@ -71,6 +74,17 @@ function Eyepiece(focal_length, apparent_fov, barlow){
     this.actual_fov = 0.0;
     this.magnification_barlow = 0;
     this.actual_fov_barlow = 0.0;
+}
+
+function eyepiece_calculate(){
+    for (i in eyepieces){
+        let ep = eyepieces[i];
+        ep.magnification = Math.floor(focal_length / ep.focal_length);
+        ep.actual_fov = (ep.apparent_fov / ep.magnification).toFixed(2);
+
+        ep.magnification_barlow = ep.magnification * ep.barlow;
+        ep.actual_fov_barlow = (ep.apparent_fov / ep.magnification_barlow).toFixed(2);
+    }
 }
 
 function refresh_eyepiece_table(){
@@ -94,6 +108,9 @@ function refresh_eyepiece_table(){
 
         let magnification_data = document.createElement("td");
         magnification_data.innerText = eyepiece.magnification;
+        if(eyepiece.magnification > max_effective_mag){
+            new_row.style.color = "red";
+        }
         new_row.appendChild(magnification_data);
 
         let actual_fov_data = document.createElement("td");
@@ -131,5 +148,6 @@ function add_eyepiece(){
 
     eyepieces.push(new_eyepiece);
 
+    eyepiece_calculate();
     refresh_eyepiece_table();
 }
