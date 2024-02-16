@@ -8,7 +8,7 @@
 <body>
     <h3>Telescope Info:</h3>
     <p>*values in inches will be converted mm immediately, so if you have mm that will be more accurate.</p>
-    <form onsubmit="telescope_calculate(); return false;">
+    <form onsubmit="telescope_button(); return false;">
 
         <label>Aperture: </label>
         <input id="aperture" type="number" step="0.01"/>
@@ -32,7 +32,7 @@
 
     <hr><br>
 
-    <form onsubmit="add_eyepiece(); return false;">
+    <form onsubmit="eyepiece_button(); return false;">
         <label>Focal Length:</label>
         <input id="eyepiece-focal-length" type="number"/>
 
