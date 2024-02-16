@@ -107,6 +107,7 @@ function refresh_eyepiece_table(){
         magnification_data.innerText = eyepiece.magnification;
         if(eyepiece.magnification > max_effective_mag){
             magnification_data.style.color = "red";
+            magnification_data.innerText = "*" + magnification_data.innerText + "*"
         }
         new_row.appendChild(magnification_data);
 
@@ -118,6 +119,7 @@ function refresh_eyepiece_table(){
         magnification_barlow_data.innerText = eyepiece.magnification_barlow;
         if(eyepiece.magnification_barlow > max_effective_mag){
             magnification_barlow_data.style.color = "red";
+            magnification_barlow_data.innerText = "*" + magnification_barlow_data.innerText + "*"
         }
         new_row.appendChild(magnification_barlow_data);
 
