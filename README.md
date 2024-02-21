@@ -9,6 +9,7 @@ Tools for astronomy. Especially amateur astronomers. Will be posted on [my websi
 - Resolution limits for scope.
 - Allow entering focal length or focal ratio (note that focal length should be prefered)
 - CSS to make it look okay. Especially necessary is centering the table info and adding borders
+- how to integrate into pelican site? .md in pages? or add as static HTML in template or somewhere else?
 
 ## Maybe List
 - Overlay fov on an object like Andromeda.
