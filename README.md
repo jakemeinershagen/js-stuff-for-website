@@ -5,11 +5,10 @@ Tools for astronomy. Especially amateur astronomers. Will be posted on [my websi
 
 # ToDo:
 - Allow adding multiple eyepieces and calculate mag and fov for each.
-    - assume 52 degree fov if none entered?
     - make sure not entering barlow is allowed
 - Resolution limits for scope.
 - Allow entering focal length or focal ratio (note that focal length should be prefered)
-- CSS to make it look okay. Especially necessary is centering the table info and adding borders
+- add way to delete eyepieces
 
 ## Maybe List
 - Overlay fov on an object like Andromeda.

@@ -40,6 +40,8 @@ function get_focal_length_mm(){
     if(focal_length_units === "in"){
         focal_length = Math.floor(focal_length * in_to_mm);
     }
+
+    output_to_element("focal-length-output", focal_length);
 }
 
 function get_max_effective_mag(){
@@ -78,6 +80,10 @@ function eyepiece_calculate(){
         let ep = eyepieces[i];
         ep.magnification = Math.floor(focal_length / ep.focal_length);
         ep.actual_fov = (ep.apparent_fov / ep.magnification).toFixed(2);
+
+        if (isNaN(ep.barlow)){
+            ep.barlow = 1;
+        }
 
         ep.magnification_barlow = ep.magnification * ep.barlow;
         ep.actual_fov_barlow = (ep.apparent_fov / ep.magnification_barlow).toFixed(2);
