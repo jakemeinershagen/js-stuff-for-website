@@ -141,9 +141,26 @@ function refresh_eyepiece_table(){
         barlow_data.innerText = eyepiece.barlow;
         new_row.appendChild(barlow_data);
 
+        // need to wrap a in td to get borders
+        // don't know why I need to set the cursor, but I do
+        let delete_button_data = document.createElement("td")
+        let delete_button = document.createElement("a");
+        delete_button.innerText = "Delete";
+        delete_button.style.color = "red";
+        delete_button.style.cursor = "pointer";
+        delete_button.onclick = delete_row;
+        delete_button_data.appendChild(delete_button);
+        new_row.appendChild(delete_button_data);
+
         table.appendChild(new_row);
     }
 
+}
+
+
+function delete_row(event){
+    console.log("delete");
+    console.log(event);
 }
 
 

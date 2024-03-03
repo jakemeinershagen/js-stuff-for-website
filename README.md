@@ -6,13 +6,13 @@ Tools for astronomy. Especially amateur astronomers. Will be posted on [my websi
 # ToDo:
 - Allow adding multiple eyepieces and calculate mag and fov for each.
     - make sure not entering barlow is allowed
+    - add way to delete eyepieces
 - Resolution limits for scope.
 - Allow entering focal length or focal ratio (note that focal length should be prefered)
-- add way to delete eyepieces
 - how to integrate into pelican site? .md in pages? or add as static HTML in template or somewhere else?
 
 ## Maybe List
 - Overlay fov on an object like Andromeda.
 
 # Sources:
-https://www.nasa.gov/wp-content/uploads/2015/01/YOSS_Act_16.pdf
+https://www.nasa.gov/wp-content/uploads/2015/01/YOSS_Act_16.pdf - general calculations
